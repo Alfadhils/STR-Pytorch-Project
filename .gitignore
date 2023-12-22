@@ -2,5 +2,7 @@
 /ppt_img
 /recog_data
 /opencv_text_detection_image.py
-/IIT_Data
+/IIIT5K
+/__pycache__
 /saved_models
+/writing

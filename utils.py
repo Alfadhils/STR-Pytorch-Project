@@ -90,3 +90,31 @@ def recognize(img):
         text = '-'
     
     return text
+
+def map_label(char_array):
+    result = []
+    for char in char_array:
+        if char.isdigit():
+            result.append(int(char))
+        elif char.isalpha():
+            if char.isupper():
+                result.append(ord(char) - ord('A') + 10)
+            elif char.islower():
+                result.append(ord(char) - ord('a') + 36)
+        else:
+            result.append(None)
+    return np.array(result, dtype=np.int64)
+
+def map_result(result_array):
+    char = []
+    for num in result_array:
+        if 0 <= num <= 9:
+            char.append(str(num))
+        elif 10 <= num <= 35:
+            char.append(chr(ord('A') + num - 10))
+        elif num is not None:
+            char.append(chr(ord('a') + num - 36))
+        else:
+            char.append(None)
+
+    return ''.join([str(c) for c in char if c is not None])
